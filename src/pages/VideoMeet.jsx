@@ -455,8 +455,9 @@ import MicOffIcon from '@mui/icons-material/MicOff'
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
+import server from '../environment';
 
-const server_url ="http://localhost:8009";
+const server_url = server;
 
 var connections = {};
 
@@ -752,7 +753,7 @@ export default function VideoMeetComponent() {
                         if (videoExists) {
                             console.log("FOUND EXISTING");
 
-                            // Update the stream of the existing video
+                            
                             setVideos(videos => {
                                 const updatedVideos = videos.map(video =>
                                     video.socketId === socketListId ? { ...video, stream: event.stream } : video
@@ -761,7 +762,6 @@ export default function VideoMeetComponent() {
                                 return updatedVideos;
                             });
                         } else {
-                            // Create a new video
                             console.log("CREATING NEW");
                             let newVideo = {
                                 socketId: socketListId,
